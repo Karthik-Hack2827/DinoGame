@@ -1,11 +1,8 @@
-info.onCountdownEnd(function () {
-    game.over(true)
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeScoreBy(1)
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeLifeBy(-1)
 })
@@ -37,11 +34,10 @@ forever(function () {
 forever(function () {
     projectile2 = sprites.createProjectileFromSide(assets.image`Tourist`, -90, 0)
     projectile2.y = randint(15, 115)
-    game.over(true)
     animation.runImageAnimation(
-    projectile,
+    projectile2,
     assets.animation`Animated Tourist`,
-    100,
+    200,
     true
     )
     pause(2100)
